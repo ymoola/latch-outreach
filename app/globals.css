@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f5f7f7;
+  --foreground: #162028;
+  --teal: #03a493;
+  --teal-deep: #016458;
+  --teal-soft: #e6f5f3;
+  --mist: #d2dbde;
+  --carbon: #162028;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+::selection {
+  background: rgba(3, 164, 147, 0.18);
+  color: #162028;
+}
+
+@layer base {
+  body {
+    @apply font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tight text-carbon;
+  }
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto max-w-7xl px-6 lg:px-8;
+  }
+
+  .section-shell {
+    @apply relative overflow-hidden py-24 lg:py-32;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-teal;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-10;
+    background-color: rgb(3 164 147 / 0.6);
+  }
+
+  .section-title {
+    @apply text-4xl font-black leading-tight md:text-5xl lg:text-6xl;
+  }
+
+  .section-copy {
+    @apply max-w-3xl text-base leading-7 md:text-lg md:leading-8;
+    color: rgb(22 32 40 / 0.72);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-teal px-6 py-3 text-sm font-semibold text-white shadow-soft transition duration-300 hover:-translate-y-0.5 hover:bg-teal-400;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border bg-white px-6 py-3 text-sm font-semibold text-carbon transition duration-300 hover:-translate-y-0.5 hover:text-teal;
+    border-color: rgb(22 32 40 / 0.12);
+  }
+
+  .btn-secondary:hover {
+    border-color: rgb(3 164 147 / 0.4);
+  }
+
+  .surface-card {
+    @apply rounded-[2rem] border bg-white shadow-soft;
+    border-color: rgb(22 32 40 / 0.08);
+  }
+
+  .surface-card-dark {
+    @apply rounded-[2rem] border bg-carbon text-white shadow-panel;
+    border-color: rgb(255 255 255 / 0.1);
+  }
+
+  .pill {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.22em];
+  }
+}
