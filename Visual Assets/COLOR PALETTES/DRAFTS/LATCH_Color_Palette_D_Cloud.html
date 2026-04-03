@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LATCH — Color Palette D · Soft Cloud</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f2f2f0;
+    font-family: 'DM Sans', sans-serif;
+    padding: 60px 40px 80px;
+    color: #2a3040;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 56px; border-bottom: 1px solid #d8d8d6; padding-bottom: 24px;
+  }
+  .header-left h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+  .header-left p { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #98a0aa; margin-top: 4px; font-weight: 500; }
+  .header-right { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #b0b4b8; }
+  .section-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #98a0aa; font-weight: 600; margin-bottom: 16px; }
+  .section-desc { font-size: 13px; color: #6e7a86; margin-bottom: 24px; line-height: 1.5; max-width: 640px; }
+  .divider { height: 1px; background: #d8d8d6; margin: 48px 0; }
+
+  .primary-row {
+    display: flex; gap: 0; margin-bottom: 48px;
+    border-radius: 6px; overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+  }
+  .primary-swatch {
+    flex: 1; height: 180px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 16px 20px; position: relative;
+  }
+  .primary-swatch .swatch-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .primary-swatch .swatch-hex { font-size: 11px; font-weight: 400; opacity: 0.6; letter-spacing: 0.5px; }
+  .primary-swatch .swatch-role {
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    opacity: 0.4; position: absolute; top: 14px; left: 20px; font-weight: 600;
+  }
+
+  .ext-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 48px; }
+  .ext-swatch {
+    height: 90px; border-radius: 4px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 10px 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+  .ext-swatch .s-label { font-size: 10px; font-weight: 600; margin-bottom: 1px; }
+  .ext-swatch .s-hex { font-size: 9px; opacity: 0.5; letter-spacing: 0.3px; }
+
+  .grad-row { display: flex; gap: 16px; margin-bottom: 48px; }
+  .grad-swatch {
+    flex: 1; height: 80px; border-radius: 5px;
+    display: flex; align-items: flex-end; padding: 10px 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .grad-swatch .g-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; }
+
+  .type-row { display: flex; gap: 32px; margin-bottom: 48px; }
+  .type-card {
+    flex: 1; border-radius: 6px; padding: 36px 32px;
+    display: flex; flex-direction: column; justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .type-card .t-headline { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .type-card .t-sub { font-size: 13px; font-weight: 400; opacity: 0.5; }
+
+  .usage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 48px; }
+  .usage-card {
+    background: #fff; border-radius: 6px; padding: 28px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.025); border: 1px solid #eaeaec;
+  }
+  .usage-card .u-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .usage-card .u-colors { display: flex; gap: 8px; margin-bottom: 14px; }
+  .usage-card .u-dot { width: 28px; height: 28px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.03); }
+  .usage-card .u-text { font-size: 12px; color: #6e7a86; line-height: 1.5; }
+
+  .ratio-section { margin-bottom: 48px; }
+  .ratio-bar {
+    display: flex; height: 40px; border-radius: 4px; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03); margin-bottom: 10px;
+  }
+  .ratio-bar div { display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .ratio-legend { display: flex; gap: 24px; font-size: 10px; color: #98a0aa; letter-spacing: 0.5px; }
+
+  .footer { text-align: center; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #b0b4b8; margin-top: 20px; }
+
+  /* Mood strip */
+  .mood-strip {
+    display: flex; gap: 0; height: 6px; border-radius: 3px; overflow: hidden;
+    margin-bottom: 48px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .mood-strip div { flex: 1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>LATCH — Color System D</h1>
+    <p>Brand Palette · Soft Cloud</p>
+  </div>
+  <div class="header-right">Option D · March 2026</div>
+</div>
+
+<!-- MOOD STRIP -->
+<div class="mood-strip">
+  <div style="background:#FAFBFC;"></div>
+  <div style="background:#EDF1F5;"></div>
+  <div style="background:#D6DEE6;"></div>
+  <div style="background:#A3B2C0;"></div>
+  <div style="background:#7B94A8;"></div>
+  <div style="background:#3A4E60;"></div>
+</div>
+
+<!-- ═══ PRIMARY ═══ -->
+<div class="section-label">Primary Palette</div>
+<div class="section-desc">
+  Built on a cool lavender-grey base with a soft steel blue accent. Every tone sits above 70% lightness except the text color — so the entire palette feels open, breathable, and effortless. Premium through restraint, not weight.
+</div>
+<div class="primary-row">
+  <div class="primary-swatch" style="background:#FAFBFC; color:#3A4E60; border-right:1px solid #eef0f2;">
+    <span class="swatch-role">Canvas</span>
+    <span class="swatch-name">Cloud</span>
+    <span class="swatch-hex">#FAFBFC</span>
+  </div>
+  <div class="primary-swatch" style="background:#EDF1F5; color:#3A4E60;">
+    <span class="swatch-role">Surface</span>
+    <span class="swatch-name">Haze</span>
+    <span class="swatch-hex">#EDF1F5</span>
+  </div>
+  <div class="primary-swatch" style="background:#D6DEE6; color:#2A3C4C;">
+    <span class="swatch-role">Accent</span>
+    <span class="swatch-name">Fog</span>
+    <span class="swatch-hex">#D6DEE6</span>
+  </div>
+  <div class="primary-swatch" style="background:#3A4E60; color:#D6DEE6;">
+    <span class="swatch-role">Text</span>
+    <span class="swatch-name">Slate</span>
+    <span class="swatch-hex">#3A4E60</span>
+  </div>
+</div>
+
+<!-- ═══ BLUE-GREY SCALE ═══ -->
+<div class="section-label">Blue-Grey Scale — Lightest to Deepest</div>
+<div class="ext-grid">
+  <div class="ext-swatch" style="background:#FAFBFC; color:#5068; border:1px solid #eef0f2;">
+    <span class="s-label">BG 50</span>
+    <span class="s-hex">#FAFBFC</span>
+  </div>
+  <div class="ext-swatch" style="background:#EDF1F5; color:#3A4E60;">
+    <span class="s-label">BG 100</span>
+    <span class="s-hex">#EDF1F5</span>
+  </div>
+  <div class="ext-swatch" style="background:#D6DEE6; color:#2A3C4C;">
+    <span class="s-label">BG 200</span>
+    <span class="s-hex">#D6DEE6</span>
+  </div>
+  <div class="ext-swatch" style="background:#A3B2C0; color:#1a2a38;">
+    <span class="s-label">BG 300</span>
+    <span class="s-hex">#A3B2C0</span>
+  </div>
+  <div class="ext-swatch" style="background:#7B94A8; color:#f2f4f6;">
+    <span class="s-label">BG 400</span>
+    <span class="s-hex">#7B94A8</span>
+  </div>
+  <div class="ext-swatch" style="background:#3A4E60; color:#D6DEE6;">
+    <span class="s-label">BG 500</span>
+    <span class="s-hex">#3A4E60</span>
+  </div>
+</div>
+
+<!-- ═══ WARM OFFSET SCALE ═══ -->
+<div class="section-label">Warm Offset — Subtle Warmth for Balance</div>
+<div class="section-desc">
+  A micro-dose of warm neutrals to prevent the palette from feeling clinical. Used sparingly — hover states, alternate rows, subtle card backgrounds.
+</div>
+<div class="ext-grid">
+  <div class="ext-swatch" style="background:#FBFAF8; color:#50483e; border:1px solid #f0eee8;">
+    <span class="s-label">Warm 50</span>
+    <span class="s-hex">#FBFAF8</span>
+  </div>
+  <div class="ext-swatch" style="background:#F4F2EE; color:#443e36;">
+    <span class="s-label">Warm 100</span>
+    <span class="s-hex">#F4F2EE</span>
+  </div>
+  <div class="ext-swatch" style="background:#E8E4DE; color:#3a342c;">
+    <span class="s-label">Warm 200</span>
+    <span class="s-hex">#E8E4DE</span>
+  </div>
+  <div class="ext-swatch" style="background:#D0CAC0; color:#2a261e;">
+    <span class="s-label">Warm 300</span>
+    <span class="s-hex">#D0CAC0</span>
+  </div>
+  <div class="ext-swatch" style="background:#AAA49A; color:#f6f4f0;">
+    <span class="s-label">Warm 400</span>
+    <span class="s-hex">#AAA49A</span>
+  </div>
+  <div class="ext-swatch" style="background:#706A60; color:#ece8e2;">
+    <span class="s-label">Warm 500</span>
+    <span class="s-hex">#706A60</span>
+  </div>
+</div>
+
+<!-- ═══ ACCENT / SEMANTIC ═══ -->
+<div class="section-label">Interactive & Semantic</div>
+<div class="section-desc">
+  The interactive blue is the only saturated color in the entire system. Everything else stays muted. One point of color = instant hierarchy.
+</div>
+<div class="ext-grid" style="grid-template-columns: repeat(4, 1fr);">
+  <div class="ext-swatch" style="background:#5A8EAE; color:#f4f8fa; height:100px;">
+    <span class="s-label">Interactive</span>
+    <span class="s-hex">#5A8EAE</span>
+  </div>
+  <div class="ext-swatch" style="background:#6AA88C; color:#f2f8f5; height:100px;">
+    <span class="s-label">Success</span>
+    <span class="s-hex">#6AA88C</span>
+  </div>
+  <div class="ext-swatch" style="background:#CC9E5C; color:#faf6ee; height:100px;">
+    <span class="s-label">Warning</span>
+    <span class="s-hex">#CC9E5C</span>
+  </div>
+  <div class="ext-swatch" style="background:#C06A6A; color:#fcf2f2; height:100px;">
+    <span class="s-label">Error</span>
+    <span class="s-hex">#C06A6A</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ GRADIENTS ═══ -->
+<div class="section-label">Approved Gradients</div>
+<div class="grad-row">
+  <div class="grad-swatch" style="background: linear-gradient(105deg, #FAFBFC 0%, #EDF1F5 100%); color:#5A6E80;">
+    <span class="g-label">Cloud → Haze</span>
+  </div>
+  <div class="grad-swatch" style="background: linear-gradient(105deg, #EDF1F5 0%, #D6DEE6 100%); color:#3A4E60;">
+    <span class="g-label">Haze → Fog</span>
+  </div>
+  <div class="grad-swatch" style="background: linear-gradient(108deg, #FAFBFC 0%, #F4F2EE 100%); color:#5A6050;">
+    <span class="g-label">Cloud → Warm 100</span>
+  </div>
+  <div class="grad-swatch" style="background: linear-gradient(105deg, #EDF1F5 0%, #E8E4DE 100%); color:#3A4450;">
+    <span class="g-label">Haze → Warm 200</span>
+  </div>
+  <div class="grad-swatch" style="background: linear-gradient(110deg, #3A4E60 0%, #506878 100%); color:#D6DEE6;">
+    <span class="g-label">Slate → Slate Light</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ TYPE ═══ -->
+<div class="section-label">Type on Background</div>
+<div class="type-row">
+  <div class="type-card" style="background:#FAFBFC; color:#3A4E60; border:1px solid #e8ecf0;">
+    <span class="t-headline">Memberships Compound.</span>
+    <span class="t-sub">Slate on Cloud — everyday default</span>
+  </div>
+  <div class="type-card" style="background:#EDF1F5; color:#3A4E60;">
+    <span class="t-headline">Memberships Compound.</span>
+    <span class="t-sub">Slate on Haze — card surfaces</span>
+  </div>
+</div>
+<div class="type-row">
+  <div class="type-card" style="background:linear-gradient(105deg, #FAFBFC, #EDF1F5); color:#3A4E60;">
+    <span class="t-headline">Memberships Compound.</span>
+    <span class="t-sub">Slate on gradient — hero / banner</span>
+  </div>
+  <div class="type-card" style="background:#3A4E60; color:#EDF1F5;">
+    <span class="t-headline">Memberships Compound.</span>
+    <span class="t-sub">Haze on Slate — inverted sections</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ RATIO ═══ -->
+<div class="section-label">Usage Ratio — 65 / 25 / 10</div>
+<div class="section-desc">Skewed lighter than standard 60/30/10. More whitespace = more premium.</div>
+<div class="ratio-section">
+  <div class="ratio-bar">
+    <div style="width:65%; background:#FAFBFC; color:#7B94A8; border-right:1px solid #e8ecf0;">65% Cloud</div>
+    <div style="width:25%; background:#EDF1F5; color:#3A4E60;">25% Haze</div>
+    <div style="width:10%; background:#5A8EAE; color:#f4f8fa;">10%</div>
+  </div>
+  <div class="ratio-legend">
+    <span>Cloud — dominant canvas, generous whitespace</span>
+    <span>Haze — cards, sections, secondary surfaces</span>
+    <span>Interactive — buttons, links, focus states only</span>
+  </div>
+</div>
+
+<!-- ═══ CONTEXT ═══ -->
+<div class="section-label">Application Guide</div>
+<div class="usage-grid">
+  <div class="usage-card">
+    <div class="u-title">App UI</div>
+    <div class="u-colors">
+      <div class="u-dot" style="background:#FAFBFC;"></div>
+      <div class="u-dot" style="background:#EDF1F5;"></div>
+      <div class="u-dot" style="background:#3A4E60;"></div>
+      <div class="u-dot" style="background:#5A8EAE;"></div>
+    </div>
+    <div class="u-text">Cloud canvas with Haze cards. Slate text. Interactive blue for CTAs only — one saturated color in the whole interface. Feels like a premium iOS app.</div>
+  </div>
+  <div class="usage-card">
+    <div class="u-title">Marketing / Social</div>
+    <div class="u-colors">
+      <div class="u-dot" style="background:#EDF1F5;"></div>
+      <div class="u-dot" style="background:#D6DEE6;"></div>
+      <div class="u-dot" style="background:#3A4E60;"></div>
+    </div>
+    <div class="u-text">Haze and Fog backgrounds. Slate headlines. No loud colors. The quietness is the differentiator — every competitor is screaming, you whisper.</div>
+  </div>
+  <div class="usage-card">
+    <div class="u-title">Investor / Print</div>
+    <div class="u-colors">
+      <div class="u-dot" style="background:#FAFBFC;"></div>
+      <div class="u-dot" style="background:#3A4E60;"></div>
+      <div class="u-dot" style="background:#5A8EAE;"></div>
+    </div>
+    <div class="u-text">White ground, Slate for body, Interactive blue for charts and key metrics. Clean enough to print on premium stock without looking washed out.</div>
+  </div>
+</div>
+
+<div class="footer">LATCH · Brand Identity Option D · 2026</div>
+
+</body>
+</html>

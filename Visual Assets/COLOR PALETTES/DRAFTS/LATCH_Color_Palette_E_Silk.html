@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LATCH — Color Palette E · Silk</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f2f2f0;
+    font-family: 'DM Sans', sans-serif;
+    padding: 60px 40px 80px;
+    color: #2e3438;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 56px; border-bottom: 1px solid #d8d6d4; padding-bottom: 24px;
+  }
+  .header-left h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+  .header-left p { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #a09894; margin-top: 4px; font-weight: 500; }
+  .header-right { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #b4aeaa; }
+  .section-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #a09894; font-weight: 600; margin-bottom: 16px; }
+  .section-desc { font-size: 13px; color: #74706c; margin-bottom: 24px; line-height: 1.5; max-width: 640px; }
+  .divider { height: 1px; background: #d8d6d4; margin: 48px 0; }
+
+  .primary-row {
+    display: flex; gap: 0; margin-bottom: 48px;
+    border-radius: 6px; overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+  }
+  .primary-swatch {
+    flex: 1; height: 180px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 16px 20px; position: relative;
+  }
+  .primary-swatch .swatch-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .primary-swatch .swatch-hex { font-size: 11px; font-weight: 400; opacity: 0.6; letter-spacing: 0.5px; }
+  .primary-swatch .swatch-role {
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    opacity: 0.4; position: absolute; top: 14px; left: 20px; font-weight: 600;
+  }
+
+  .ext-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 48px; }
+  .ext-swatch {
+    height: 90px; border-radius: 4px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 10px 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+  .ext-swatch .s-label { font-size: 10px; font-weight: 600; margin-bottom: 1px; }
+  .ext-swatch .s-hex { font-size: 9px; opacity: 0.5; letter-spacing: 0.3px; }
+
+  .grad-row { display: flex; gap: 16px; margin-bottom: 48px; }
+  .grad-swatch {
+    flex: 1; height: 80px; border-radius: 5px;
+    display: flex; align-items: flex-end; padding: 10px 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .grad-swatch .g-label { font-size: 10px; font-weight: 600; letter-spacing: 1px; }
+
+  .type-row { display: flex; gap: 32px; margin-bottom: 48px; }
+  .type-card {
+    flex: 1; border-radius: 6px; padding: 36px 32px;
+    display: flex; flex-direction: column; justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .type-card .t-headline { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .type-card .t-sub { font-size: 13px; font-weight: 400; opacity: 0.5; }
+
+  .usage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 48px; }
+  .usage-card {
+    background: #fff; border-radius: 6px; padding: 28px 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.025); border: 1px solid #eae8e4;
+  }
+  .usage-card .u-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+  .usage-card .u-colors { display: flex; gap: 8px; margin-bottom: 14px; }
+  .usage-card .u-dot { width: 28px; height: 28px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.03); }
+  .usage-card .u-text { font-size: 12px; color: #74706c; line-height: 1.5; }
+
+  .ratio-section { margin-bottom: 48px; }
+  .ratio-bar {
+    display: flex; height: 40px; border-radius: 4px; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03); margin-bottom: 10px;
+  }
+  .ratio-bar div { display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .ratio-legend { display: flex; gap: 24px; font-size: 10px; color: #a09894; letter-spacing: 0.5px; }
+
+  .footer { text-align: center; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #b4aeaa; margin-top: 20px; }
+
+  .mood-strip {
+    display: flex; gap: 0; height: 6px; border-radius: 3px; overflow: hidden;
+    margin-bottom: 48px; box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  }
+  .mood-strip div { flex: 1; }
+
+  /* Pairing preview */
+  .pairing-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 48px;
+  }
+  .pairing-card {
+    border-radius: 6px; padding: 32px 28px; position: relative;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  }
+  .pairing-card .p-tag {
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 600; opacity: 0.35; margin-bottom: 16px;
+  }
+  .pairing-card .p-headline { font-size: 26px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 8px; }
+  .pairing-card .p-body { font-size: 13px; line-height: 1.6; opacity: 0.65; }
+  .pairing-card .p-btn {
+    display: inline-block; margin-top: 16px; padding: 10px 28px;
+    border-radius: 4px; font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>LATCH — Color System E</h1>
+    <p>Brand Palette · Silk</p>
+  </div>
+  <div class="header-right">Option E · March 2026</div>
+</div>
+
+<!-- MOOD STRIP -->
+<div class="mood-strip">
+  <div style="background:#FAF9F7;"></div>
+  <div style="background:#F0EDE8;"></div>
+  <div style="background:#DDD8D0;"></div>
+  <div style="background:#B8C4CC;"></div>
+  <div style="background:#8A9CA8;"></div>
+  <div style="background:#38444E;"></div>
+</div>
+
+<!-- ═══ PRIMARY ═══ -->
+<div class="section-label">Primary Palette</div>
+<div class="section-desc">
+  Warm ivory meets cool silver. The tension between warm canvas and cool accent creates visual interest without any loud colors. Feels like a high-end hotel lobby — comfortable, considered, quietly expensive.
+</div>
+<div class="primary-row">
+  <div class="primary-swatch" style="background:#FAF9F7; color:#38444E; border-right:1px solid #f0ede8;">
+    <span class="swatch-role">Canvas</span>
+    <span class="swatch-name">Ivory</span>
+    <span class="swatch-hex">#FAF9F7</span>
+  </div>
+  <div class="primary-swatch" style="background:#F0EDE8; color:#38444E;">
+    <span class="swatch-role">Surface</span>
+    <span class="swatch-name">Linen</span>
+    <span class="swatch-hex">#F0EDE8</span>
+  </div>
+  <div class="primary-swatch" style="background:#B8C4CC; color:#262E34;">
+    <span class="swatch-role">Accent</span>
+    <span class="swatch-name">Pewter</span>
+    <span class="swatch-hex">#B8C4CC</span>
+  </div>
+  <div class="primary-swatch" style="background:#38444E; color:#D8DDE2;">
+    <span class="swatch-role">Text</span>
+    <span class="swatch-name">Charcoal</span>
+    <span class="swatch-hex">#38444E</span>
+  </div>
+</div>
+
+<!-- ═══ WARM SCALE ═══ -->
+<div class="section-label">Warm Scale — Ivory to Taupe</div>
+<div class="ext-grid">
+  <div class="ext-swatch" style="background:#FAF9F7; color:#584e44; border:1px solid #f0ede8;">
+    <span class="s-label">Warm 50</span>
+    <span class="s-hex">#FAF9F7</span>
+  </div>
+  <div class="ext-swatch" style="background:#F0EDE8; color:#4e453c;">
+    <span class="s-label">Warm 100</span>
+    <span class="s-hex">#F0EDE8</span>
+  </div>
+  <div class="ext-swatch" style="background:#E2DCD4; color:#403830;">
+    <span class="s-label">Warm 200</span>
+    <span class="s-hex">#E2DCD4</span>
+  </div>
+  <div class="ext-swatch" style="background:#D0C8BC; color:#322C24;">
+    <span class="s-label">Warm 300</span>
+    <span class="s-hex">#D0C8BC</span>
+  </div>
+  <div class="ext-swatch" style="background:#A89E92; color:#faf8f4;">
+    <span class="s-label">Warm 400</span>
+    <span class="s-hex">#A89E92</span>
+  </div>
+  <div class="ext-swatch" style="background:#70685E; color:#f0ece6;">
+    <span class="s-label">Warm 500</span>
+    <span class="s-hex">#70685E</span>
+  </div>
+</div>
+
+<!-- ═══ COOL SCALE ═══ -->
+<div class="section-label">Cool Scale — Silver to Slate</div>
+<div class="ext-grid">
+  <div class="ext-swatch" style="background:#EEF1F3; color:#3a4a56;">
+    <span class="s-label">Cool 50</span>
+    <span class="s-hex">#EEF1F3</span>
+  </div>
+  <div class="ext-swatch" style="background:#D8DDE2; color:#2e3e48;">
+    <span class="s-label">Cool 100</span>
+    <span class="s-hex">#D8DDE2</span>
+  </div>
+  <div class="ext-swatch" style="background:#B8C4CC; color:#222e36;">
+    <span class="s-label">Cool 200</span>
+    <span class="s-hex">#B8C4CC</span>
+  </div>
+  <div class="ext-swatch" style="background:#8A9CA8; color:#141e26;">
+    <span class="s-label">Cool 300</span>
+    <span class="s-hex">#8A9CA8</span>
+  </div>
+  <div class="ext-swatch" style="background:#5C6E7A; color:#e4e8ec;">
+    <span class="s-label">Cool 400</span>
+    <span class="s-hex">#5C6E7A</span>
+  </div>
+  <div class="ext-swatch" style="background:#38444E; color:#c8d0d6;">
+    <span class="s-label">Cool 500</span>
+    <span class="s-hex">#38444E</span>
+  </div>
+</div>
+
+<!-- ═══ ACCENT / SEMANTIC ═══ -->
+<div class="section-label">Interactive & Semantic</div>
+<div class="section-desc">
+  A muted steel blue for interactivity — never competes with the warm canvas. Semantic tones are deliberately soft. Nothing in this palette shouts.
+</div>
+<div class="ext-grid" style="grid-template-columns: repeat(4, 1fr);">
+  <div class="ext-swatch" style="background:#6A8FA4; color:#f4f6f8; height:100px;">
+    <span class="s-label">Interactive</span>
+    <span class="s-hex">#6A8FA4</span>
+  </div>
+  <div class="ext-swatch" style="background:#7AAA8E; color:#f4f8f6; height:100px;">
+    <span class="s-label">Success</span>
+    <span class="s-hex">#7AAA8E</span>
+  </div>
+  <div class="ext-swatch" style="background:#C4A064; color:#faf6ee; height:100px;">
+    <span class="s-label">Warning</span>
+    <span class="s-hex">#C4A064</span>
+  </div>
+  <div class="ext-swatch" style="background:#B87070; color:#faf2f2; height:100px;">
+    <span class="s-label">Error</span>
+    <span class="s-hex">#B87070</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ GRADIENTS ═══ -->
+<div class="section-label">Approved Gradients</div>
+<div class="grad-row">
+  <div class="grad-swatch" style="background: linear-gradient(105deg, #FAF9F7 0%, #F0EDE8 100%); color:#5C6E7A;">
+    <span class="g-label">Ivory → Linen</span>
+  </div>
+  <div class="grad-swatch" style="background: linear-gradient(105deg, #F0EDE8 0%, #E2DCD4 100%); color:#38444E;">
+    <span class="g-label">Linen → Warm 200</span>
+  </div>
+  <div class="grad-swatch" style="background: linear-gradient(108deg, #FAF9F7 0%, #EEF1F3 100%); color:#5C6E7A;">
+    <span class="g-label">Ivory → Cool 50</span>
+  </div>
+  <div class="grad-swatch" style="background: linear-gradient(105deg, #EEF1F3 0%, #F0EDE8 100%); color:#38444E;">
+    <span class="g-label">Cool 50 → Linen</span>
+  </div>
+  <div class="grad-swatch" style="background: linear-gradient(110deg, #38444E 0%, #4E5E68 100%); color:#D8DDE2;">
+    <span class="g-label">Charcoal → Charcoal Lt</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ TYPE ═══ -->
+<div class="section-label">Type on Background</div>
+<div class="type-row">
+  <div class="type-card" style="background:#FAF9F7; color:#38444E; border:1px solid #eae6e0;">
+    <span class="t-headline">Memberships Compound.</span>
+    <span class="t-sub">Charcoal on Ivory — primary</span>
+  </div>
+  <div class="type-card" style="background:#F0EDE8; color:#38444E;">
+    <span class="t-headline">Memberships Compound.</span>
+    <span class="t-sub">Charcoal on Linen — cards</span>
+  </div>
+</div>
+<div class="type-row">
+  <div class="type-card" style="background:#38444E; color:#F0EDE8;">
+    <span class="t-headline">Memberships Compound.</span>
+    <span class="t-sub">Linen on Charcoal — inverted hero</span>
+  </div>
+  <div class="type-card" style="background:#38444E; color:#B8C4CC;">
+    <span class="t-headline">Memberships Compound.</span>
+    <span class="t-sub">Pewter on Charcoal — subtle dark</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ PAIRING PREVIEWS ═══ -->
+<div class="section-label">In-Context Preview</div>
+<div class="pairing-grid">
+  <div class="pairing-card" style="background:#FAF9F7; color:#38444E; border:1px solid #eae6e0;">
+    <div class="p-tag">Light Mode</div>
+    <div class="p-headline">Toronto's insider perks.</div>
+    <div class="p-body">One membership. Dining, wellness, fitness, activities, and travel — all at your fingertips.</div>
+    <span class="p-btn" style="background:#6A8FA4; color:#FAF9F7;">Get Started</span>
+  </div>
+  <div class="pairing-card" style="background:#38444E; color:#F0EDE8;">
+    <div class="p-tag" style="color:#8A9CA8;">Dark Mode</div>
+    <div class="p-headline">Toronto's insider perks.</div>
+    <div class="p-body">One membership. Dining, wellness, fitness, activities, and travel — all at your fingertips.</div>
+    <span class="p-btn" style="background:#B8C4CC; color:#38444E;">Get Started</span>
+  </div>
+  <div class="pairing-card" style="background:#F0EDE8; color:#38444E;">
+    <div class="p-tag">Card Surface</div>
+    <div class="p-headline">3.3× merchant ROI.</div>
+    <div class="p-body">Tracked foot traffic. Zero delivery commissions. The deposit pays for itself in 8 weeks.</div>
+    <span class="p-btn" style="background:#38444E; color:#F0EDE8;">Learn More</span>
+  </div>
+  <div class="pairing-card" style="background:linear-gradient(108deg, #FAF9F7, #EEF1F3); color:#38444E; border:1px solid #e4e6e8;">
+    <div class="p-tag">Gradient Surface</div>
+    <div class="p-headline">Deals expire.</div>
+    <div class="p-body" style="font-weight:800; font-size:26px; opacity:1; letter-spacing:-0.3px; line-height:1.15;">Memberships Compound.</div>
+    <span class="p-btn" style="background:#6A8FA4; color:#FAF9F7; margin-top:20px;">Join LATCH</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══ RATIO ═══ -->
+<div class="section-label">Usage Ratio — 65 / 25 / 10</div>
+<div class="ratio-section">
+  <div class="ratio-bar">
+    <div style="width:65%; background:#FAF9F7; color:#8A9CA8; border-right:1px solid #eae6e0;">65% Ivory</div>
+    <div style="width:25%; background:#F0EDE8; color:#38444E;">25% Linen</div>
+    <div style="width:10%; background:#6A8FA4; color:#faf8f6;">10%</div>
+  </div>
+  <div class="ratio-legend">
+    <span>Ivory — primary canvas, whitespace</span>
+    <span>Linen — cards, sections, dividers</span>
+    <span>Interactive — CTAs, links, highlights</span>
+  </div>
+</div>
+
+<!-- ═══ CONTEXT ═══ -->
+<div class="section-label">Application Guide</div>
+<div class="usage-grid">
+  <div class="usage-card">
+    <div class="u-title">App UI</div>
+    <div class="u-colors">
+      <div class="u-dot" style="background:#FAF9F7;"></div>
+      <div class="u-dot" style="background:#F0EDE8;"></div>
+      <div class="u-dot" style="background:#38444E;"></div>
+      <div class="u-dot" style="background:#6A8FA4;"></div>
+    </div>
+    <div class="u-text">Ivory canvas, Linen for card backgrounds. Charcoal text. Interactive blue for CTAs. The warm-cool interplay prevents the interface from feeling sterile or cold.</div>
+  </div>
+  <div class="usage-card">
+    <div class="u-title">Marketing / Social</div>
+    <div class="u-colors">
+      <div class="u-dot" style="background:#F0EDE8;"></div>
+      <div class="u-dot" style="background:#B8C4CC;"></div>
+      <div class="u-dot" style="background:#38444E;"></div>
+    </div>
+    <div class="u-text">Linen backgrounds with Pewter accent lines. Charcoal headlines. This palette photographs well — warm tones look natural in lifestyle and food photography contexts.</div>
+  </div>
+  <div class="usage-card">
+    <div class="u-title">Investor / Print</div>
+    <div class="u-colors">
+      <div class="u-dot" style="background:#38444E;"></div>
+      <div class="u-dot" style="background:#B8C4CC;"></div>
+      <div class="u-dot" style="background:#FAF9F7;"></div>
+    </div>
+    <div class="u-text">Charcoal ground with Pewter accents for financial slides. Ivory for data panels. Prints on warm stock without any color shift — already warm-calibrated.</div>
+  </div>
+</div>
+
+<div class="footer">LATCH · Brand Identity Option E · 2026</div>
+
+</body>
+</html>
